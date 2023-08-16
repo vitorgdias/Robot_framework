@@ -40,5 +40,5 @@ Click in search button
     Click Element    locator=${SEARCH_BUTTON}
 
 Check if the product appear in the search results "${PRODUCT}"
-    Wait Until Element Is Visible    locator=(//span[contains(text(),'${PRODUCT}')])
+    Wait Until Element Is Visible    locator=(//span[contains(text(),'${PRODUCT}')])[3]    timeout=${WAIT_TIMEOUT}
     
