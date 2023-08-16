@@ -7,6 +7,8 @@ ${MENU_ELETRONICOS}         //a[contains(text(),'Eletrônicos')]
 ${WAIT_TIMEOUT}             10s                
 ${HEADER_ELETRONICOS}       //h1[contains(.,'Eletrônicos e Tecnologia')]
 ${HEADER_TEXT_ELETRONICOS}  Eletrônicos e Tecnologia
+${SEARCH_BAR}               twotabsearchtextbox
+${SEARCH_BUTTON}            nav-search-submit-button
 
 *** Keywords ***
 Open the browser
@@ -14,6 +16,7 @@ Open the browser
     Maximize Browser Window
 
 Close the browser
+    Capture Page Screenshot
     Close Browser
 
 Access the Amazon.com.br web page
@@ -29,3 +32,13 @@ Check if the page have the phrase "${PHRASE}"
 
 Check if the page header is "${TITLE}"
     Title Should Be    title=${TITLE}
+
+Type in search box "${TEXT}"
+    Input Text    locator=${SEARCH_BAR}    text=${TEXT}
+
+Click in search button
+    Click Element    locator=${SEARCH_BUTTON}
+
+Check if the product appear in the search results "${PRODUCT}"
+    Wait Until Element Is Visible    locator=(//span[contains(text(),'${PRODUCT}')])
+    

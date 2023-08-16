@@ -16,10 +16,10 @@ Test Case 01 - Access "Eletrônicos" menu
     Check if the page header is "Eletrônicos e Tecnologia | Amazon.com.br"
     
 
-# Test Case 02 - Product search
-#     [Documentation]  This test check the product search
-#     [Tags]           product_search  search_list
-#     Access the Amazon.com.br web page
-#     Type in search box "Xbox Series S"
-#     Click in search button
-#     Check if the product appear in the search results
+Test Case 02 - Product search
+    [Documentation]  This test check the product search
+    [Tags]           product_search  search_list
+    Access the Amazon.com.br web page
+    Type in search box "Xbox Series S"
+    Click in search button
+    Check if the product appear in the search results "Console Xbox Series S"
