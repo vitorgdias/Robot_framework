@@ -32,7 +32,11 @@ Register the new user created in the ServerRest
     ...            expected_status=${desired_status_code}
     
     Log    ${RESPONSE.json()}
-    Set Test Variable    ${USER_ID}          ${RESPONSE.json()["_id"]}
+
+    IF    ${RESPONSE.status_code} == 201
+        Set Test Variable    ${USER_ID}    ${RESPONSE.json()["_id"]}        
+    END
+    
     Set Test Variable    ${RESPONSE_BODY}    ${RESPONSE.json()}
 Create session in ServeRest
     ${HEADER}  Create Dictionary
