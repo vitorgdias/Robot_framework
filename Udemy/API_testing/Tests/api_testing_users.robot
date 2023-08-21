@@ -15,3 +15,9 @@ Scenario 02 - Register a user that already exists
     Register the new user created in the ServerRest    email=${EMAIL_TEST}  desired_status_code=201
     Repeat the registered user
     Check if the API not grant permission to register the user again
+
+Scenario 03 - Create a new user and check the registration data
+    Create a new user
+    Register the new user created in the ServerRest    email=${EMAIL_TEST}  desired_status_code=201
+    Check the new user data
+    Check the body reponse

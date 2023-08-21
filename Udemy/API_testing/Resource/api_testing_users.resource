@@ -32,6 +32,7 @@ Register the new user created in the ServerRest
     ...            expected_status=${desired_status_code}
     
     Log    ${RESPONSE.json()}
+    Set Test Variable    ${USER_ID}          ${RESPONSE.json()["_id"]}
     Set Test Variable    ${RESPONSE_BODY}    ${RESPONSE.json()}
 Create session in ServeRest
     ${HEADER}  Create Dictionary
@@ -50,3 +51,15 @@ Repeat the registered user
 
 Check if the API not grant permission to register the user again
     Dictionary Should Contain Item    ${RESPONSE_BODY}    message    Este email já está sendo usado
+
+Check the new user data
+    ${REPONSE_CHECK}    GET On Session    alias=ServeRest    url=/usuarios/${USER_ID}    expected_status=200
+    Set Test Variable    ${BODY_CHECK}    ${REPONSE_CHECK.json()}
+
+Check the body reponse
+    Log    ${BODY_CHECK}
+    Dictionary Should Contain Item    ${BODY_CHECK}    nome             Fulano da Silva
+    Dictionary Should Contain Item    ${BODY_CHECK}    email            ${EMAIL_TEST}
+    Dictionary Should Contain Item    ${BODY_CHECK}    password         1234
+    Dictionary Should Contain Item    ${BODY_CHECK}    administrador    True
+    Dictionary Should Contain Item    ${BODY_CHECK}    _id              {USER_ID}
