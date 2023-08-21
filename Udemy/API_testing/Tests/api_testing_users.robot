@@ -21,3 +21,9 @@ Scenario 03 - Create a new user and check the registration data
     Register the new user created in the ServerRest    email=${EMAIL_TEST}  desired_status_code=201
     Check the new user data
     Check the body reponse
+
+Scenario 04 - Login the new user and check if the login was successful
+    Create a new user
+    Register the new user created in the ServerRest    email=${EMAIL_TEST}  desired_status_code=201
+    Login the new user
+    Check the login status

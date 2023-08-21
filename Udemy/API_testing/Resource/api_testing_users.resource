@@ -67,3 +67,23 @@ Check the body reponse
     Dictionary Should Contain Item    ${BODY_CHECK}    password         1234
     Dictionary Should Contain Item    ${BODY_CHECK}    administrador    True
     Dictionary Should Contain Item    ${BODY_CHECK}    _id              {USER_ID}
+
+Login the new user
+    ${LOGIN}    Create Dictionary
+    ...         email=${EMAIL_TEST}
+    ...         password=1234
+    
+    Create session in ServeRest
+
+    ${LOGIN_RESPONSE}    POST On Session
+    ...                  alias=ServeRest
+    ...                  url=/login
+    ...                  json=${LOGIN}
+    ...                  expected_status=200
+    
+    Set Test Variable    ${RESPONSE_LOGIN}    ${LOGIN_RESPONSE.json()}
+Check the login status
+    Log    ${RESPONSE_LOGIN}
+    Dictionary Should Contain Item    ${RESPONSE_LOGIN}    message    Login realizado com sucesso
+    Dictionary Should Contain Key     ${RESPONSE_LOGIN}    authorization
+    
